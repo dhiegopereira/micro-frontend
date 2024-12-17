@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Dinâmico</title>
+    <style>
+        body {
+            height: 100vh;
+            margin: 0;
+            border: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+            display: flex;
+        }
+
+        .sidebar {
+            width: 200px;
+            height: 100vh;
+            background-color: #333;
+            color: white;
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: flex;
+            flex-direction: column;
+            padding-top: 20px;
+        }
+
+        .sidebar a {
+            text-decoration: none;
+            color: white;
+            padding: 15px 20px;
+            display: block;
+            transition: background 0.3s;
+        }
+
+        .sidebar a:hover {
+            background-color: #575757;
+        }
+
+        .content {
+            margin-left: 200px;
+            padding: 20px;
+            flex: 1;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100vh;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar Dinâmico -->
+    <div class="sidebar">
+        <% if (apps.length > 0) { %>
+            <% apps.forEach(app => { %>
+                <a href="#" onclick="loadContent('<%= app.url %>')"><%= app.label %></a>
+            <% }); %>
+        <% } else { %>
+            <p>Nenhum app configurado.</p>
+        <% } %>
+    </div>
+
+    <!-- Conteúdo Principal -->
+    <div class="content">
+        <div id="renderArea">
+            <iframe id="contentFrame" src=""></iframe>
+        </div>
+    </div>
+
+    <script>
+        function loadContent(url) {
+            const contentFrame = document.getElementById('contentFrame');
+            contentFrame.src = url;
+        }
+    </script>
+</body>
+</html>

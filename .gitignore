@@ -1,0 +1,7 @@
+micro-front/node_modules
+app-angular/node_modules
+app-angular/dist
+app-next/node_modules
+app-next/.next
+app-vite/node_modules
+app-vite/dist
